@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_login.utils import login_required
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import form
 from sqlalchemy.orm import backref
@@ -11,5 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 
 from flaskblog import routes
